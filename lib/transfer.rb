@@ -16,8 +16,10 @@ attr_accessor :sender, :receiver, :amount, :status
   def execute_transaction
     if @sender.balance < @amount
        @status = "rejected"
-     return "Transaction rejected. Please check your account balance."
-   else
+       return "Transaction rejected. Please check your account balance."
+    elsif @status == "complete" 
+      puts "Transaction was already executed"
+    else
       @sender.balance -= @amount
       @receiver.balance += @amount
       @status = "complete"
